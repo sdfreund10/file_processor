@@ -1,0 +1,49 @@
+- if flash[:notice]
+  .error_messages
+    h2 = flash[:notice]
+div.container.col-md-8
+  h2.form-text Edit File
+  = form_for @data_file do |f|
+    .field.form-group
+      h4.form-text Original File
+      = link_to @data_file.original_file,
+                download_original_data_file_path(format: "csv"),
+                class: "btn btn-default"
+    .field.form-group
+      h4.form-text Processed File
+      - if @data_file.processed_file
+        = link_to @data_file.processed_file,
+                  download_original_data_file_path(format: "csv"),
+                  class: "btn btn-default"
+      -else
+        span.btn.btn-default
+          | NONE
+    .field.form-group
+      h4.form-text Processor
+      = f.collection_select :processor_id, Processor.order(:name), :id, :name
+    div.field.form-group.uploadbutton
+      h4.form-text Replace Original File
+      label.btn.btn-default id="file-button"
+        span.file-label
+          | Replace Original File
+        = f.file_field :attachment
+    = f.submit class: "btn btn-default"
+
+  dev.form-group
+    = link_to "Process File", :process_file_data_file, method: :put,
+                                class: "btn btn-default"
+  div.form-group
+    = link_to "Back", :data_files, class: "btn btn-default"
+
+javascript:
+  var file_input = document.getElementById("data_file_attachment");
+  $(file_input).on("change", function() {
+    var files = file_input.files
+    if (files.length > 0 && $(".file-display").text() != files[0].name) {
+      $(".file-label").html(files[0].name)
+    }
+  });
+
+  setTimeout(function() {
+    $('.error_messages').fadeOut('slow');
+  }, 3000);

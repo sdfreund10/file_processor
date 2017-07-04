@@ -1,0 +1,32 @@
+div.container.col-md-8
+  h2.form-text Create New Processor
+  = form_for @processor do |f|
+    .field.form-group
+      = f.label :name
+      = f.text_field :name, required: true, class: "form-control mx-sm-3"
+    .field.form-group
+      = f.label :source
+      = f.text_field :source, class: "form-control mx-sm-3"
+    .field.form-group
+      = f.label :processor_class
+      = f.text_field :processor_class, require: true, class: "form-control mx-sm-3"
+    div.field.form-group.uploadbutton
+      h4.form-text Upload Script (optional)
+      label.btn.btn-default id="file-button"
+        | Upload File
+        = f.file_field :attachment
+      br
+      div.file-display
+        | No File
+    = f.submit class: "btn btn-default"
+  br
+  = link_to "Cancel", :processors, class: "btn btn-default"
+
+javascript:
+  var file_input = document.getElementById("processor_attachment");
+  $(file_input).on("change", function() {
+    var files = file_input.files
+    if (files.length > 0 && $(".file-display").text() != files[0].name) {
+      $(".file-display").html(files[0].name)
+    }
+  });

@@ -1,0 +1,80 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background: #333;
+  padding: 1em;
+  margin: 0;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.btn {
+  background: #333;
+  color: #ccc;
+  border-color: #aaa;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #555;
+}
+
+.h2 .h4 {
+  color: #ddd
+}
+
+select {
+  color: #ccc;
+  background-color: #333;
+}
+
+div.btn.btn-default.file-button {
+  z-index: 100;
+  opacity: 100;
+}
+
+input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+div.file-display {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid;
+  white-space: nowrap;
+  padding: 6px 12px;
+  line-height: 10px;
+  border-radius: 4px;
+  width: 200px;
+  font-size: 12px;
+}
+
+input.form-control {
+  background-color: #333;
+  color: #ccc;
+}
+
+select.form-control {
+  background-color: #333;
+  color: #ccc;
+}
+
+.error_messages {
+  text-align: center;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  padding: 5px;
+  border-radius: 1px;
+  h2 {
+    font-size: 15px;
+  }
+}

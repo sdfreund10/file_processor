@@ -1,0 +1,16 @@
+div.container.col-md-8
+  h2.form-text Update Processor
+  = form_for @processor do |f|
+    .field.form-group
+      = f.label :name
+      = f.text_field :name, required: true, class: "form-control mx-sm-3"
+    .field.form-group
+      = f.label :source
+      = f.text_field :source, class: "form-control mx-sm-3"
+    .field.form-group
+      = f.label :processor_class
+      = f.text_field :processor_class, require: true, class: "form-control mx-sm-3"
+    br
+    = f.submit class: "btn btn-default"
+  br
+  = link_to "Back", :processors, class: "btn btn-default"

@@ -1,0 +1,47 @@
+h1 Data Files
+=> link_to "Processors", processors_path, class: "btn btn-default"
+=< link_to "New Data File", new_data_file_path, class: "btn btn-default"
+table.table.table-hover.table-condensed.w3-theme-d5
+  thead
+    tr
+      td Name
+      td Processor Class
+      td Processed?
+      td
+      td
+  tbody
+  - unless @data_files.empty?
+    - @data_files.each do |d|
+      - if d.success?
+        tr.success
+          td = d.original_file
+          td = d&.processor&.name
+          td = d.processed_file.present?
+          td = link_to 'Edit', edit_data_file_path(d.id),
+                                 class: "btn btn-default",
+                                 type: 'button'
+          td = link_to 'Delete', data_file_path(d), method: :delete,
+                               data: {confirm: "You sure you want to delete #{d.original_file}?"},
+                               class: "btn btn-default"
+      - elsif d.failure?
+        tr.danger
+          td = d.original_file
+          td = d&.processor&.name
+          td = d.processed_file.present?
+          td = link_to 'Edit', edit_data_file_path(d.id),
+                                 class: "btn btn-default",
+                                 type: 'button'
+          td = link_to 'Delete', data_file_path(d), method: :delete,
+                               data: {confirm: "You sure you want to delete #{d.original_file}?"},
+                               class: "btn btn-default"
+      - else
+        tr
+          td = d.original_file
+          td = d&.processor&.name
+          td = d.processed_file.present?
+          td = link_to 'Edit', edit_data_file_path(d.id),
+                                 class: "btn btn-default",
+                                 type: 'button'
+          td = link_to 'Delete', data_file_path(d), method: :delete,
+                               data: {confirm: "You sure you want to delete #{d.original_file}?"},
+                               class: "btn btn-default"

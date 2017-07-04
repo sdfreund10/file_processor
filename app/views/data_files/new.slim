@@ -1,0 +1,29 @@
+div.container.col-md-8
+  h2.form-text Upload New File
+  = form_for @data_file do |f|
+    .field.form-group
+      h4.form-text Select Processor
+      div
+        = f.collection_select :processor_id, Processor.all, :id, :name, {},
+                              { class: "form-control", data_live_search: "true" }
+    div.field.form-group.uploadbutton
+      h4.form-text Upload File
+      label.btn.btn-default id="file-button"
+        | Upload File
+        = f.file_field :attachment
+      br
+      div.file-display
+        | No File
+    .form-group
+    = f.submit class: "btn btn-default"
+  div.form-group
+  = link_to "Cancel", :data_files, class: "btn btn-default"
+
+javascript:
+  var file_input = document.getElementById("data_file_attachment");
+  $(file_input).on("change", function() {
+    var files = file_input.files
+    if (files.length > 0 && $(".file-display").text() != files[0].name) {
+      $(".file-display").html(files[0].name)
+    }
+  });

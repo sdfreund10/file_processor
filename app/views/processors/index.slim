@@ -1,0 +1,23 @@
+h1 Processors
+=> link_to "Data Files", data_files_path, class: "btn btn-default"
+=< link_to "New Processor", new_processor_path, class: "btn btn-default"
+br
+table.table.table-hover.table-condensed
+  thead
+    tr
+      td Name
+      td Source
+      td Processor Class
+      td
+      td
+  tbody
+  - if @processors
+    - @processors.each do |p|
+      tr
+        td = p.name
+        td = p.source
+        td = p.processor_class
+        td = link_to 'Edit', edit_processor_path(p.id), class: "btn btn-default"
+        td = link_to 'Delete', processor_path(p), method: :delete,
+                             class: "btn btn-default",
+                             data: {confirm: "You sure you want to delete #{p.name}?"}
